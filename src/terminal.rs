@@ -47,11 +47,7 @@ impl Terminal {
     }
 
     pub fn read_key() -> Result<Key, Error> {
-        loop {
-            if let Some(key) = io::stdin().lock().keys().next() {
-                return key;
-            }
-        }
+        io::stdin().lock().keys().next().unwrap()
     }
 
     pub fn cursor_position(x: u16, y: u16) {

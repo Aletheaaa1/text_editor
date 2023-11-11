@@ -64,10 +64,11 @@ impl Editor {
 
     fn process_keypress(&mut self) -> Result<(), Error> {
         let pressed_key = Terminal::read_key()?;
-        if let Key::Ctrl('q') = pressed_key {
-            self.should_quit = true;
+        match pressed_key {
+            Key::Ctrl('q') => self.should_quit = true,
+            Key::Up | Key::Down | Key::Left | Key::Right => {}
+            _ => (),
         }
-
         Ok(())
     }
 }
